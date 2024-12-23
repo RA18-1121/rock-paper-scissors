@@ -17,15 +17,15 @@ let playRound = (humanChoice, computerChoice) => {
         if(computerChoice.toLowerCase() === "paper")
         {
             computerScore++;
-            console.log("You lose! Paper beats Rock");
+            result.textContent = `You lose! Paper beats Rock`;
         }
         else if(computerChoice.toLowerCase() === "scissors")
         {
             humanScore++;
-            console.log("You win! Rock beats Scissors");
+            result.textContent = `You win! Rock beats Scissors`;
         }
         else{
-            console.log("Draw!");
+            result.textContent = `Draw!`;
         }
     }
     else if(humanChoice.toLowerCase() === "paper")
@@ -33,15 +33,15 @@ let playRound = (humanChoice, computerChoice) => {
         if(computerChoice.toLowerCase() === "scissors")
         {
             computerScore++;
-            console.log("You lose! Scissors beat Paper");
+            result.textContent = `You lose! Scissors beat Paper`;
         }
         else if(computerChoice.toLowerCase() === "rock")
         {
             humanScore++;
-            console.log("You win! Paper beats Rock");
+            result.textContent = `You win! Paper beats Rock`;
         }
         else{
-            console.log("Draw!");
+            result.textContent = `Draw!`;
         }
     }
     else if(humanChoice.toLowerCase() === "scissors")
@@ -49,17 +49,26 @@ let playRound = (humanChoice, computerChoice) => {
         if(computerChoice.toLowerCase() === "rock")
         {
             computerScore++;
-            console.log("You lose! Rock beats Scissors");
+            result.textContent = `You lose! Rock beats Scissors`;
         }
         else if(computerChoice.toLowerCase() === "rock")
         {
             humanScore++;
-            console.log("You win! Scissors beat Rock");
+            result.textContent = `You win! Scissors beat Rock`;
         }
         else{
-            console.log("Draw!");
+            result.textContent = `Draw!`;
         }
     }
+    result.textContent = result.textContent.concat(`\nPlayer - ${humanScore}   ${computerScore} - Computer`);
+    if(humanScore === 5)
+    {
+        result.textContent = result.textContent.concat(`\nYou win the game!`);
+    }
+    if(computerScore === 5)
+        {
+            result.textContent = result.textContent.concat(`\nYou lose the game!`);
+        }
 }
 
 let body = document.querySelector("body");
@@ -85,3 +94,8 @@ buttons.forEach((button) => {
         playRound(button.getAttribute("class"), getComputerChoice());
     });
 })
+
+let result = document.createElement("div");
+result.classList.add("result");
+result.setAttribute("style", "white-space: pre");
+body.appendChild(result);
